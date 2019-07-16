@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Assignment1</title>
+             <style>
+               #title {
+                height: 20%;
+                width: 100%
+               }
+                 .main1{
+                        height: 50%;
+                        width: 100%
+                 }
+                 .main2{
+                  margin-top: 30%;
+                        height: 50%;
+                        width: 100%
+                 }
+                  #chartdiv {
+                    width: 80%;
+                    height: 250px;
+                  }
+                  #chartdiv1 {
+                    width: 80%;
+                    height: 250px;
+                  }
+                  #chartdiv2 {
+                    width: 80%;
+                    height: 250px;
+                  }
+                  #chartdiv3 {
+                      width: 80%;
+                    height: 250px;
+                  }
+                  #chartdiv4 {
+                      width: 80%;
+                    height: 250px;
+                  }
+                  #chartdiv5 {
+                      width: 80%;
+                    height: 250px;
+                  }
+            * {
+              box-sizing: border-box;
+            }
+            
+            /* Create three equal columns that floats next to each other */
+            .column {
+              float: left;
+              width: 33.33%;
+              padding: 10px;
+              height: 300px; /* Should be removed. Only for demonstration */
+            }
+            
+            /* Clear floats after the columns */
+            .row:after {
+              content: "";
+              display: table;
+              clear: both;
+            }
+            </style>
+
+<script src="https://www.amcharts.com/lib/4/core.js"></script>
+<script src="https://www.amcharts.com/lib/4/charts.js"></script>
+<!-- <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script> -->
+
+
+<!-- Chart code -->
+<script>
+  
+am4core.ready(function() {
+
+// Themes begin
+// am4core.useTheme(am4themes_animated);
+// Themes end
+
+    var container1 = am4core.create("chartdiv", am4core.Container);
+container1.width = am4core.percent(100);
+container1.height = am4core.percent(100);
+
+var container2 = am4core.create("chartdiv1", am4core.Container);
+container2.width = am4core.percent(100);
+container2.height = am4core.percent(100);
+
+var container3 = am4core.create("chartdiv2", am4core.Container);
+container3.width = am4core.percent(100);
+container3.height = am4core.percent(100);
+
+var container4 = am4core.create("chartdiv3", am4core.Container);
+container4.width = am4core.percent(100);
+container4.height = am4core.percent(100);
+
+var container5 = am4core.create("chartdiv4", am4core.Container);
+container5.width = am4core.percent(100);
+container5.height = am4core.percent(100);
+
+var container6 = am4core.create("chartdiv5", am4core.Container);
+container6.width = am4core.percent(100);
+container6.height = am4core.percent(100);
+
+// container.layout = "vertical";
+
+createBulletChart(container1, "solid");
+createBulletChart(container1, "gradient");
+
+/* Create ranges */
+function createRange(axis, from, to, color) {
+  var range = axis.axisRanges.create();
+  range.value = from;
+  range.endValue = to;
+  range.axisFill.fill = color;
+  range.axisFill.fillOpacity = 0.8;
+  range.label.disabled = true;
+}
+
+/* Create bullet chart with specified color type for background */
+function createBulletChart(parent, colorType) {
+  var colors = ["#19d228", "#b4dd1e", "#f4fb16", "#f6d32b", "#fb7116"]; 
+  
+  /* Create chart instance */
+  var chart1 = container1.createChild(am4charts.XYChart);
+  var chart2 = container2.createChild(am4charts.XYChart);
+  var chart3 = container3.createChild(am4charts.XYChart);
+  var chart4 = container4.createChild(am4charts.XYChart);
+  var chart5 = container5.createChild(am4charts.XYChart);
+  var chart6 = container6.createChild(am4charts.XYChart);
+//   chart.paddingRight = 25;
+
+  /* Add data */
+  chart1.data = [
+      {
+    "category": "Boiler efficiency",
+    "value": 86.4,
+    "target": 87.5380955053
+  }
+];
+chart2.data = [
+      {
+    "category": "Power O/P",
+    "value": 250,
+    "target": 252.14
+  }
+];
+chart3.data = [
+      {
+    "category": "Plant Efficiency",
+    "value": 38.169,
+    "target": 38.55
+  }
+];
+chart4.data = [
+      {
+    "category": "Turbine Cycle Heat Rate",
+    "value": 1946.7,
+    "target": 1952.75
+  }
+];
+chart5.data = [
+      {
+    "category": "Unit Gross Heat Rate",
+    "value": 2253.13,
+    "target": 2230.7483802312
+  }
+];
+chart6.data = [
+      {
+    "category": "Coal Firing Rate",
+    "value": 171,
+    "target":175.769
+  }
+];
+
+  /* Create axes 1 */
+  var categoryAxis = chart1.yAxes.push(new am4charts.CategoryAxis());
+  categoryAxis.dataFields.category = "target";
+  categoryAxis.renderer.minGridDistance = 30;
+  categoryAxis.renderer.grid.template.disabled = true;
+
+  var valueAxis = chart1.xAxes.push(new am4charts.ValueAxis());
+  valueAxis.renderer.minGridDistance = 30;
+  valueAxis.renderer.grid.template.disabled = true;
+  valueAxis.min = 0;
+  valueAxis.max = 100;
+  valueAxis.strictMinMax = true;
+
+    /* Create axes 2*/
+    var categoryAxis = chart2.yAxes.push(new am4charts.CategoryAxis());
+  categoryAxis.dataFields.category = "target";
+  categoryAxis.renderer.minGridDistance = 30;
+  categoryAxis.renderer.grid.template.disabled = true;
+
+  var valueAxis = chart2.xAxes.push(new am4charts.ValueAxis());
+  valueAxis.renderer.minGridDistance = 30;
+  valueAxis.renderer.grid.template.disabled = true;
+  valueAxis.min = 200;
+  valueAxis.max = 270;
+  valueAxis.strictMinMax = true;
+
+  /* Create axes 3*/
+  var categoryAxis = chart3.yAxes.push(new am4charts.CategoryAxis());
+  categoryAxis.dataFields.category = "target";
+  categoryAxis.renderer.minGridDistance = 30;
+  categoryAxis.renderer.grid.template.disabled = true;
+
+  var valueAxis = chart3.xAxes.push(new am4charts.ValueAxis());
+  valueAxis.renderer.minGridDistance = 30;
+  valueAxis.renderer.grid.template.disabled = true;
+  valueAxis.min = 0;
+  valueAxis.max = 50;
+  valueAxis.strictMinMax = true;
+    /* Create axes 4*/
+    var categoryAxis = chart4.yAxes.push(new am4charts.CategoryAxis());
+  categoryAxis.dataFields.category = "target";
+  categoryAxis.renderer.minGridDistance = 30;
+  categoryAxis.renderer.grid.template.disabled = true;
+
+  var valueAxis = chart4.xAxes.push(new am4charts.ValueAxis());
+  valueAxis.renderer.minGridDistance = 30;
+  valueAxis.renderer.grid.template.disabled = true;
+  valueAxis.min = 1900;
+  valueAxis.max = 1970;
+  valueAxis.strictMinMax = true;
+
+     /* Create axes 5*/
+     var categoryAxis = chart5.yAxes.push(new am4charts.CategoryAxis());
+  categoryAxis.dataFields.category = "target";
+  categoryAxis.renderer.minGridDistance = 30;
+  categoryAxis.renderer.grid.template.disabled = true;
+
+  var valueAxis = chart5.xAxes.push(new am4charts.ValueAxis());
+  valueAxis.renderer.minGridDistance = 30;
+  valueAxis.renderer.grid.template.disabled = true;
+  valueAxis.min = 2200;
+  valueAxis.max = 2280;
+  valueAxis.strictMinMax = true;
+
+  
+     /* Create axes 6*/
+     var categoryAxis = chart6.yAxes.push(new am4charts.CategoryAxis());
+  categoryAxis.dataFields.category = "target";
+  categoryAxis.renderer.minGridDistance = 30;
+  categoryAxis.renderer.grid.template.disabled = true;
+
+  var valueAxis = chart6.xAxes.push(new am4charts.ValueAxis());
+  valueAxis.renderer.minGridDistance = 30;
+  valueAxis.renderer.grid.template.disabled = true;
+  valueAxis.min = 150;
+  valueAxis.max = 190;
+  valueAxis.strictMinMax = true;
+
+  /* Create series 1*/
+  var series = chart1.series.push(new am4charts.ColumnSeries());
+  var bullet = series.bullets.push(new am4charts.Bullet());
+  var line = bullet.createChild(am4core.Line);
+  line.x1 = 0;
+  line.y1 = -20;
+  line.x2 = 0;
+  line.y2 = 20;
+  line.stroke = am4core.color("#000");
+  line.strokeWidth = 4; 
+  series.dataFields.valueX = "value";
+  series.dataFields.categoryY = "target";
+  series.columns.template.fill = am4core.color("#ADFF2F");
+  series.columns.template.stroke = am4core.color("#fff");
+  series.columns.template.strokeWidth = 1;
+  series.columns.template.strokeOpacity = 0.5;
+  series.columns.template.height = am4core.percent(15);
+  series.columns.template.tooltipText = "{value}"
+
+  /* Create series 2*/
+  var series = chart2.series.push(new am4charts.ColumnSeries());
+  var bullet = series.bullets.push(new am4charts.Bullet());
+  var line = bullet.createChild(am4core.Line);
+  line.x1 = 0;
+  line.y1 = -20;
+  line.x2 = 0;
+  line.y2 = 20;
+  line.stroke = am4core.color("#000");
+  line.strokeWidth = 4; 
+  series.dataFields.valueX = "value";
+  series.dataFields.categoryY = "target";
+  series.columns.template.fill = am4core.color("#ADFF2F");
+  series.columns.template.stroke = am4core.color("#fff");
+  series.columns.template.strokeWidth = 1;
+  series.columns.template.strokeOpacity = 0.5;
+  series.columns.template.height = am4core.percent(15);
+  series.columns.template.tooltipText = "{value}"
+
+   /* Create series 3*/
+   var series = chart3.series.push(new am4charts.ColumnSeries());
+  var bullet = series.bullets.push(new am4charts.Bullet());
+  var line = bullet.createChild(am4core.Line);
+  line.x1 = 0;
+  line.y1 = -20;
+  line.x2 = 0;
+  line.y2 = 20;
+  line.stroke = am4core.color("#000");
+  line.strokeWidth = 4; 
+  series.dataFields.valueX = "value";
+  series.dataFields.categoryY = "target";
+  series.columns.template.fill = am4core.color("#ADFF2F");
+  series.columns.template.stroke = am4core.color("#fff");
+  series.columns.template.strokeWidth = 1;
+  series.columns.template.strokeOpacity = 0.5;
+  series.columns.template.height = am4core.percent(15);
+  series.columns.template.tooltipText = "{value}"
+
+    /* Create series 4*/
+    var series = chart4.series.push(new am4charts.ColumnSeries());
+  var bullet = series.bullets.push(new am4charts.Bullet());
+  var line = bullet.createChild(am4core.Line);
+  line.x1 = 0;
+  line.y1 = -20;
+  line.x2 = 0;
+  line.y2 = 20;
+  line.stroke = am4core.color("#000");
+  line.strokeWidth = 4; 
+  series.dataFields.valueX = "value";
+  series.dataFields.categoryY = "target";
+  series.columns.template.fill = am4core.color("#F08080");
+  series.columns.template.stroke = am4core.color("#fff");
+  series.columns.template.strokeWidth = 1;
+  series.columns.template.strokeOpacity = 0.5;
+  series.columns.template.height = am4core.percent(15);
+  series.columns.template.tooltipText = "{value}"
+
+    /* Create series 5*/
+    var series = chart5.series.push(new am4charts.ColumnSeries());
+  var bullet = series.bullets.push(new am4charts.Bullet());
+  var line = bullet.createChild(am4core.Line);
+  line.x1 = 0;
+  line.y1 = -20;
+  line.x2 = 0;
+  line.y2 = 20;
+  line.stroke = am4core.color("#000");
+  line.strokeWidth = 4; 
+  series.dataFields.valueX = "value";
+  series.dataFields.categoryY = "target";
+  series.columns.template.fill = am4core.color("#F0E68C");
+  series.columns.template.stroke = am4core.color("#fff");
+  series.columns.template.strokeWidth = 1;
+  series.columns.template.strokeOpacity = 0.5;
+  series.columns.template.height = am4core.percent(15);
+  series.columns.template.tooltipText = "{value}"
+
+    /* Create series 6*/
+    var series = chart6.series.push(new am4charts.ColumnSeries());
+  var bullet = series.bullets.push(new am4charts.Bullet());
+  var line = bullet.createChild(am4core.Line);
+  line.x1 = 0;
+  line.y1 = -20;
+  line.x2 = 0;
+  line.y2 = 20;
+  line.stroke = am4core.color("#000");
+  line.strokeWidth = 4; 
+  series.dataFields.valueX = "value";
+  series.dataFields.categoryY = "target";
+  series.columns.template.fill = am4core.color("#F0E68C");
+  series.columns.template.stroke = am4core.color("#fff");
+  series.columns.template.strokeWidth = 1;
+  series.columns.template.strokeOpacity = 0.5;
+  series.columns.template.height = am4core.percent(15);
+  series.columns.template.tooltipText = "{value}"
+//   var series2 = chart.series.push(new am4charts.LineSeries());
+//   series2.dataFields.valueX = "target";
+//   series2.dataFields.categoryY = "category";
+//   series2.strokeWidth = 0;
+
+  var bullet = series2.bullets.push(new am4charts.Bullet());
+  var line = bullet.createChild(am4core.Line);
+  line.x1 = 0;
+  line.y1 = -20;
+  line.x2 = 0;
+  line.y2 = 20;
+  line.stroke = am4core.color("#000");
+  line.strokeWidth = 4; 
+
+}
+}); // end am4core.ready()
+
+</script>
+    </head>
+    <body>
+        <div id="main1">
+            <div class="row">
+              <div id = "title">
+                  <h2>Plant name</h2>
+                  <h4>Unit-1 with 250MW</h4>
+                  <p id ="date"></p>
+                  <!-- <p id = "legend">legend:<p style="color:#ADFF2F;">low performance gap</p> </p> -->
+                  <script>
+                     document.getElementById("date").innerHTML = Date();
+                  </script>
+              </div>
+ 
+                    <div class="column" style="background-color:#fff;">
+                        <h3 style="text-align:center;">Boiler efficiency</h3>
+                        <p style="text-align:center;">%</p>
+                        <div id="chartdiv"> </div>
+                    </div>
+                    <div class="column" style="background-color:#fff;">
+                        <h3 style="text-align:center;">Power Output</h3>
+                        <p style="text-align:center;">MW</p>
+                      <div id="chartdiv1"></div>
+                    </div>
+                    <div class="column" style="background-color:#fff;">
+                        <h3 style="text-align:center;">Plant Efficiency</h3>
+                        <p style="text-align:center;">%</p>
+                            <div id="chartdiv2"></div>
+                    </div>
+                  </div>
+        </div>
+        <div id="main2">
+                <div class="row">
+                        <div class="column" style="background-color:#fff;">
+                            <h3 style="text-align:center; margin-top: 30%">Turbine Cycle Heat Rate</h3>
+                            <p style="text-align:center;">kcal/kWh</p>
+                            <div id="chartdiv3"></div>
+                        </div>
+                        <div class="column" style="background-color:#fff;">
+                            <h3 style="text-align:center; margin-top: 30%">Unit gross heat rate</h3>
+                            <p style="text-align:center;">kcal/kWh</p>
+                          <div id="chartdiv4"></div>
+                        </div>
+                        <div class="column" style="background-color:#fff;">
+                            <h3 style="text-align:center; margin-top: 30%">Coal Firing Rate</h3>
+                            <p style="text-align:center;">Tph</p>
+                                <div id="chartdiv5"></div>
+                        </div>
+                      </div>
+            </div>
+    </body>
+</html>
+
+<!-- Resources -->
+
+
+<!-- HTML -->
